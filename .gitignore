@@ -1,0 +1,39 @@
+# Бинарные файлы и исполняемые файлы
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+*.app
+
+# Файлы покрытия тестов
+*.coverprofile
+*.cover
+coverage.out
+profile.cov
+
+# Директория зависимостей (обычно не коммитится, если используется go.mod)
+vendor/
+
+# Файлы рабочего пространства Go
+go.work
+go.work.sum
+
+# Файлы среды и секреты
+.env
+.env.local
+.env.*.local
+config.json
+secrets.json
+
+# Файлы IDE и редакторов
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ОС системные файлы
+.DS_Store
+Thumbs.db
