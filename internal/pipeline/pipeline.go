@@ -30,7 +30,9 @@ func (p *Pipeline) Process(t model.Transaction) model.Result {
 
 	t = addBonus(t)
 
-	if err := p.save(t); err != nil {
+	var err error
+	t, err = p.save(t) // ← теперь t обновлён
+	if err != nil {
 		t.Status = model.StatusFailed
 		t.Error = err.Error()
 		return model.Result{Transaction: t, Err: err}
@@ -55,10 +57,10 @@ func addBonus(t model.Transaction) model.Transaction {
 	return t
 }
 
-func (p *Pipeline) save(t model.Transaction) error {
+func (p *Pipeline) save(t model.Transaction) (model.Transaction, error) {
 	now := time.Now()
 	t.Status = model.StatusCompleted
 	t.ProcessedAt = &now
 	p.storage.Save(t)
-	return nil
+	return t, nil
 }
